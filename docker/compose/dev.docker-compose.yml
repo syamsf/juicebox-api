@@ -1,0 +1,84 @@
+version: "3.8"
+
+services:
+  app: &app
+    build:
+      context: ../../
+      dockerfile: docker/image/api.Dockerfile
+    depends_on:
+      - db
+      - redis
+      - rabbitmq
+    volumes:
+      - "../../src:/var/www/html"
+    networks:
+      - app_network
+    ports:
+      - "8090:80"
+
+  db:
+    image: mariadb:lts
+    volumes:
+      - "../../docker/config/mariadb/data:/var/lib/mysql"
+    ports:
+      - "13306:3306"
+    environment:
+      MARIADB_ROOT_PASSWORD: ${MARIADB_ROOT_PASSWORD:-password}
+    networks:
+      - app_network
+
+  redis:
+    image: redis:latest
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: [ "CMD", "redis-cli", "ping" ]
+      interval: 10s
+      timeout: 30s
+      retries: 3
+    networks:
+      - app_network
+
+  rabbitmq:
+    hostname: rabbitmq
+    image: rabbitmq:3.13-management-alpine
+    volumes:
+      - "../../docker/config/rabbitmq/data:/var/lib/rabbitmq"
+    environment:
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_DEFAULT_USER:-admin}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_DEFAULT_PASS:-rabbitmq}
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    networks:
+      - app_network
+
+  mailpit:
+    image: axllent/mailpit
+    volumes:
+      - "../../docker/config/mailpit:/data"
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    environment:
+      MP_MAX_MESSAGES: 5000
+      MP_DATABASE: /data/mailpit.db
+      MP_SMTP_AUTH_ACCEPT_ANY: 1
+      MP_SMTP_AUTH_ALLOW_INSECURE: 1
+    networks:
+      - app_network
+
+  app-scheduler:
+    <<: *app
+    ports: []
+    command: su -s /bin/bash -c "php artisan schedule:work -vv" www-data
+
+  app-background:
+    <<: *app
+    restart: unless-stopped
+    command: su -s /bin/bash -c "php artisan rabbitmq:consume --queue=default --timeout=120" www-data
+    ports: []
+
+networks:
+  app_network:
+    external: false

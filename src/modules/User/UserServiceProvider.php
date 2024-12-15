@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
+use Modules\User\Commands\SendWelcomeMailManually;
 use Modules\User\Models\UserModel;
 use Modules\User\Policy\UserPolicy;
 
@@ -32,6 +33,7 @@ class UserServiceProvider extends ServiceProvider {
     public function registerCommands(): void {
         if ($this->app->runningInConsole()) {
             $this->commands([
+                SendWelcomeMailManually::class,
             ]);
         }
     }

@@ -1,0 +1,2104 @@
+{
+	"info": {
+		"_postman_id": "13a73c26-61a4-41fa-875a-fbf468124a18",
+		"name": "Juicebox API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "15531542"
+	},
+	"item": [
+		{
+			"name": "User Management",
+			"item": [
+				{
+					"name": "Register a user",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Test user\",\n    \"email\": \"test10@test.dev\",\n    \"password\": \"test1234\",\n    \"password_confirmation\": \"test1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/register",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"register"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test user\",\n    \"email\": \"test01@test.dev\",\n    \"password\": \"test1234\",\n    \"password_confirmation\": \"test1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:46:39 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa05d-01a1-4010-9b16-209e627ca002"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 400,\n    \"success\": false,\n    \"message\": \"The email has already been taken.\",\n    \"detail\": {\n        \"email\": [\n            \"The email has already been taken.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test user\",\n    \"email\": \"test10@test.dev\",\n    \"password\": \"test1234\",\n    \"password_confirmation\": \"test1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/register",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"register"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:47:00 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa07b-ae21-4bb8-9a85-57f6987655d8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"name\": \"Test user\",\n        \"email\": \"test10@test.dev\",\n        \"updated_at\": 1734248819,\n        \"created_at\": 1734248819,\n        \"id\": 3\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch certain user id",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/users/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"users",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/users/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 14 Dec 2024 10:23:17 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9db8d565-6865-453a-8e15-1ba83236f5ba"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"name\": \"test user\",\n        \"email\": \"test01@test.dev\",\n        \"email_verified_at\": null,\n        \"created_at\": 1734167029,\n        \"updated_at\": 1734167029,\n        \"roles\": []\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/users/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"users",
+										"1"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:48:10 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa0e6-cebe-4f6b-a499-a5695a032828"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 404,\n    \"success\": false,\n    \"message\": \"user with id 1 is not found\",\n    \"detail\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"const token = response.data.access_token",
+									"",
+									"pm.collectionVariables.set(\"auth_token\", `Bearer ${token}`)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\": \"test10@test.dev\",\n    \"password\": \"test1234\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/login",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"test02@test.dev\",\n    \"password\": \"test1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:47:26 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa0a5-6dc5-4291-9fbb-cb1828b7bbb9"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 400,\n    \"success\": false,\n    \"message\": \"The selected email is invalid.\",\n    \"detail\": {\n        \"email\": [\n            \"The selected email is invalid.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"test10@test.dev\",\n    \"password\": \"test1234\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/login",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:47:59 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa0d6-6355-4e0f-999a-b167cee8a16c"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"email\": \"test10@test.dev\",\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL2xvZ2luIiwiaWF0IjoxNzM0MjQ4ODc5LCJleHAiOjE3MzQyNTI0NzksIm5iZiI6MTczNDI0ODg3OSwianRpIjoieFdoZzlQTno1eEhqRnNHeiIsInN1YiI6IjMiLCJwcnYiOiI4YTllNDhhYzRmMzM0NzAyYWQ1MDRlZWJiMDI2MjY3ZjAyZDYxYTNhIn0.3G9YsMdhHOeoJTM3Qqn0SObT9SodZNh5ODLB2XASCHE\",\n        \"token_type\": \"bearer\",\n        \"expires_in\": 3600,\n        \"is_refresh_token\": false,\n        \"detail\": {\n            \"id\": 3,\n            \"name\": \"Test user\",\n            \"email\": \"test10@test.dev\"\n        }\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Validate token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/token/validate",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"token",
+								"validate"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/token/validate",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"token",
+										"validate"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:48:40 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa114-2f1a-4f04-b575-3c05b5da132f"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"is_token_valid\": true,\n        \"user\": {\n            \"id\": 3,\n            \"name\": \"Test user\",\n            \"email\": \"test10@test.dev\",\n            \"email_verified_at\": null,\n            \"created_at\": 1734248819,\n            \"updated_at\": 1734248819,\n            \"roles\": [],\n            \"permissions\": []\n        }\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Refresh token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"const response = pm.response.json()",
+									"const token = response.data.access_token",
+									"",
+									"pm.collectionVariables.set(\"auth_token\", `Bearer ${token}`)"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/token/refresh",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"token",
+								"refresh"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/token/refresh",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"token",
+										"refresh"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:48:52 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa126-53ae-4d53-b863-f7ac711390aa"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"email\": \"test10@test.dev\",\n        \"access_token\": \"eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vbG9jYWxob3N0OjgwMDAvYXBpL3Rva2VuL3JlZnJlc2giLCJpYXQiOjE3MzQyNDg4NzksImV4cCI6MTczNDI1MjUzMiwibmJmIjoxNzM0MjQ4OTMyLCJqdGkiOiI0TVhiNlpkR0hYYkhIUExnIiwic3ViIjoiMyIsInBydiI6IjhhOWU0OGFjNGYzMzQ3MDJhZDUwNGVlYmIwMjYyNjdmMDJkNjFhM2EifQ.avq2GTcaAHJSZzybZ9Ambl6iFqyHVHbLt0YNyHtZ56k\",\n        \"token_type\": \"bearer\",\n        \"expires_in\": 3600,\n        \"is_refresh_token\": true,\n        \"detail\": {\n            \"id\": 3,\n            \"name\": \"Test user\",\n            \"email\": \"test10@test.dev\"\n        }\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Logout",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/logout",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"logout"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/logout",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:49:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa13a-7f67-4805-a848-79bccf914044"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"message\": \"user logged out successfully\",\n        \"email\": \"test10@test.dev\"\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/logout",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"logout"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:49:28 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa15e-bfab-4028-941c-5ee0be593aba"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 500,\n    \"success\": false,\n    \"message\": \"Unauthenticated.\",\n    \"detail\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Weather",
+			"item": [
+				{
+					"name": "Fetch weather",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/weather",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"weather"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/weather",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"weather"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:49:48 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa17d-85ae-44a3-a723-3e946ccb1550"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"current_weather\": \"scattered clouds\",\n        \"raw_data\": {\n            \"coord\": {\n                \"lon\": 115.8333,\n                \"lat\": -31.9333\n            },\n            \"weather\": [\n                {\n                    \"id\": 802,\n                    \"main\": \"Clouds\",\n                    \"description\": \"scattered clouds\",\n                    \"icon\": \"03d\"\n                }\n            ],\n            \"base\": \"stations\",\n            \"main\": {\n                \"temp\": 296.47,\n                \"feels_like\": 296.32,\n                \"temp_min\": 295.93,\n                \"temp_max\": 297.51,\n                \"pressure\": 1010,\n                \"humidity\": 56,\n                \"sea_level\": 1010,\n                \"grnd_level\": 1007\n            },\n            \"visibility\": 10000,\n            \"wind\": {\n                \"speed\": 9.26,\n                \"deg\": 250\n            },\n            \"clouds\": {\n                \"all\": 40\n            },\n            \"dt\": 1734248752,\n            \"sys\": {\n                \"type\": 2,\n                \"id\": 2089443,\n                \"country\": \"AU\",\n                \"sunrise\": 1734210315,\n                \"sunset\": 1734261510\n            },\n            \"timezone\": 28800,\n            \"id\": 2063523,\n            \"name\": \"Perth\",\n            \"cod\": 200\n        }\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						},
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/weather",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"weather"
+									]
+								}
+							},
+							"status": "Unauthorized",
+							"code": 401,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:50:54 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa1e1-813d-4b63-a76a-3be239dcef24"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 401,\n    \"success\": false,\n    \"message\": \"Failed to fetch weather data. Error: Invalid API key. Please see https://openweathermap.org/faq#error401 for more info.\",\n    \"detail\": null\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Posts",
+			"item": [
+				{
+					"name": "Fetch posts by id",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/posts/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/posts/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:51:12 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa1fc-b512-4fbb-a03a-ccef5f1d8c62"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 404,\n    \"success\": false,\n    \"message\": \"Post not found\",\n    \"detail\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/posts/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:52:13 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa25a-7a20-46ed-a4f5-3962473fda22"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 3,\n        \"title\": \"Post content 1\",\n        \"content\": \"Post content 1\",\n        \"deleted_at\": null,\n        \"created_at\": \"2024-12-15T07:51:38.000000Z\",\n        \"updated_at\": \"2024-12-15T07:51:38.000000Z\"\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Fetch all posts",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/posts",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"posts"
+							],
+							"query": [
+								{
+									"key": "title",
+									"value": "post",
+									"disabled": true
+								},
+								{
+									"key": "content",
+									"value": "post1",
+									"disabled": true
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/posts",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts"
+									],
+									"query": [
+										{
+											"key": "title",
+											"value": "post",
+											"disabled": true
+										},
+										{
+											"key": "content",
+											"value": "post1",
+											"disabled": true
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:51:53 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa23b-26a5-40cf-bb01-7ae84836ed38"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": [\n        {\n            \"id\": 1,\n            \"user_id\": 3,\n            \"title\": \"Post content 1\",\n            \"content\": \"Post content 1\",\n            \"deleted_at\": null,\n            \"created_at\": \"2024-12-15T07:51:38.000000Z\",\n            \"updated_at\": \"2024-12-15T07:51:38.000000Z\",\n            \"user\": {\n                \"id\": 3,\n                \"name\": \"Test user\",\n                \"email\": \"test10@test.dev\",\n                \"email_verified_at\": null,\n                \"created_at\": 1734248819,\n                \"updated_at\": 1734248819\n            }\n        }\n    ],\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": {\n            \"current_page\": 1,\n            \"first_page_url\": \"http://localhost:8000/api/posts?page=1\",\n            \"from\": 1,\n            \"last_page\": 1,\n            \"last_page_url\": \"http://localhost:8000/api/posts?page=1\",\n            \"next_page_url\": null,\n            \"path\": \"http://localhost:8000/api/posts\",\n            \"per_page\": 15,\n            \"prev_page_url\": null,\n            \"to\": 1,\n            \"total\": 1\n        }\n    },\n    \"links\": [\n        {\n            \"url\": null,\n            \"label\": \"&laquo; Previous\",\n            \"active\": false\n        },\n        {\n            \"url\": \"http://localhost:8000/api/posts?page=1\",\n            \"label\": \"1\",\n            \"active\": true\n        },\n        {\n            \"url\": null,\n            \"label\": \"Next &raquo;\",\n            \"active\": false\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Create post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Post content 1\",\n    \"content\": \"Post content 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/posts",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"posts"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"\",\n    \"content\": \"Post content 1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/posts",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:51:24 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa20f-7f34-41d4-b65f-df602aaba611"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 400,\n    \"success\": false,\n    \"message\": \"The title field is required.\",\n    \"detail\": {\n        \"title\": [\n            \"The title field is required.\"\n        ]\n    }\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Post content 1\",\n    \"content\": \"Post content 1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/posts",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:51:38 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa224-bf04-4fb0-8092-e237b38dccde"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"title\": \"Post content 1\",\n        \"content\": \"Post content 1\",\n        \"user_id\": 3,\n        \"updated_at\": \"2024-12-15T07:51:38.000000Z\",\n        \"created_at\": \"2024-12-15T07:51:38.000000Z\",\n        \"id\": 1\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Update post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Post title 1 - update\",\n    \"content\": \"Post content 1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{local}}/posts/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Post title 1 - update\",\n    \"content\": \"Post content 1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/posts/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:52:37 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa27f-5d09-4359-b6a5-560f452b598e"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 404,\n    \"success\": false,\n    \"message\": \"Post not found\",\n    \"detail\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "PATCH",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"title\": \"Post title 1 - update\",\n    \"content\": \"Post content 1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{local}}/posts/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:52:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa292-3eba-47a1-8dcb-a5b5e8bc48c7"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"id\": 1,\n        \"user_id\": 3,\n        \"title\": \"Post title 1 - update\",\n        \"content\": \"Post content 1\",\n        \"deleted_at\": null,\n        \"created_at\": \"2024-12-15T07:51:38.000000Z\",\n        \"updated_at\": \"2024-12-15T07:52:50.000000Z\"\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				},
+				{
+					"name": "Delete post",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							},
+							{
+								"key": "Authorization",
+								"value": "{{auth_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{local}}/posts/1",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"posts",
+								"1"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "Error",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/posts/2",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts",
+										"2"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:53:04 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa2a8-59f9-43ee-9f54-e8a1b2db1a39"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"error\": true,\n    \"code\": 404,\n    \"success\": false,\n    \"message\": \"Post not found\",\n    \"detail\": null\n}"
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									},
+									{
+										"key": "Authorization",
+										"value": "{{auth_token}}",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "{{local}}/posts/1",
+									"host": [
+										"{{local}}"
+									],
+									"path": [
+										"posts",
+										"1"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Host",
+									"value": "localhost:8000"
+								},
+								{
+									"key": "Connection",
+									"value": "close"
+								},
+								{
+									"key": "X-Powered-By",
+									"value": "PHP/8.3.14"
+								},
+								{
+									"key": "Cache-Control",
+									"value": "no-cache, private"
+								},
+								{
+									"key": "Date",
+									"value": "Sun, 15 Dec 2024 07:53:20 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Request-ID",
+									"value": ""
+								},
+								{
+									"key": "Correlation-ID",
+									"value": "9dbaa2c1-572b-407f-827a-b55f7e5af58b"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"data\": {\n        \"message\": \"Post deleted successfully\"\n    },\n    \"meta\": {\n        \"status_code\": 200,\n        \"success\": true,\n        \"message\": \"\",\n        \"pagination\": null\n    },\n    \"links\": null\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "local",
+			"value": "http://localhost:8000/api",
+			"type": "string"
+		},
+		{
+			"key": "auth_token",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "local_8090",
+			"value": "http://localhost:8090/api",
+			"type": "string"
+		}
+	]
+}

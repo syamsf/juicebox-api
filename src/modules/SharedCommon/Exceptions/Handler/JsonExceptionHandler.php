@@ -75,7 +75,9 @@ class JsonExceptionHandler {
         if (config('app.debug'))
             $response['trace'] = $exceptionTrace;
 
-        return response()->json($response, $this->getExceptionStatusCode($e));
+        $errorCode = empty($errorCode) ? $this->getExceptionStatusCode($e) : $errorCode;
+
+        return response()->json($response, $errorCode);
     }
 
     protected function getExceptionStatusCode(Throwable $exception): int {

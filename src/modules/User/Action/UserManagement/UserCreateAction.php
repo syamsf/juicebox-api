@@ -3,6 +3,7 @@
 namespace Modules\User\Action\UserManagement;
 
 use Modules\User\Data\UserManagement\UserCreateData;
+use Modules\User\Jobs\WelcomeMailJobs;
 use Modules\User\Models\UserModel;
 use Modules\User\Repository\UserRepo;
 
@@ -21,6 +22,10 @@ class UserCreateAction {
             throw new \Exception("User with email {$data->email} is already registered");
         }
 
-        return $this->userRepo->create($data);
+        $result = $this->userRepo->create($data);
+
+        WelcomeMailJobs::dispatch($result);
+
+        return $result;
     }
 }
